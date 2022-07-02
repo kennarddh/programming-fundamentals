@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test enter event</title>
+  </head>
+  <body>
+    <center>
+      <h1 id="jumbo">Hello World</h1>
+    </center>
+    <script>
+      const jumboElement = document.getElementById("jumbo");
+
+      document.addEventListener("keydown", (event) => {
+        console.log(event.code);
+        console.log(event.keyCode);
+
+        if (event.code === "Enter") {
+          jumboElement.style.display = "none";
+        }
+
+        if (event.code === "NumpadEnter") {
+          jumboElement.style.display = "block";
+        }
+      });
+    </script>
+  </body>
+</html>
