@@ -19,4 +19,23 @@ describe('UpperCase LowerCase', () => {
 
 		expect(UpperCase(input)).toBe(expected)
 	})
+
+	it.each([
+		{
+			input: 'Test',
+			expected: 'test',
+		},
+		{
+			input: 'UPPERCASE',
+			expected: 'uppercase',
+		},
+		{
+			input: 'uppercase',
+			expected: 'uppercase',
+		},
+	])('Should lowercase $input to $expected', ({ input, expected }) => {
+		expect.assertions(1)
+
+		expect(LowerCase(input)).toBe(expected)
+	})
 })
