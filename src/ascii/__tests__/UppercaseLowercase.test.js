@@ -1,4 +1,4 @@
-const { UpperCase, LowerCase } = require('../UppercaseLowercase')
+const { UpperCase, LowerCase } = require('../UpperCaseLowerCase')
 
 describe('UpperCase LowerCase', () => {
 	it.each([
