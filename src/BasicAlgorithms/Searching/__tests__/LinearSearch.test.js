@@ -8,9 +8,15 @@ describe('Linear Search', () => {
 		{ array: [1, 2, 4, 5, 10, 45], target: 5, expected: 3 },
 		{ array: [1, 2, 4, 5, 10, 45], target: 10, expected: 4 },
 		{ array: [1, 2, 4, 5, 10, 45], target: 45, expected: 5 },
-	])('Should Find $target in $array', ({ array, target, expected }) => {
+	])('Should find $target in $array', ({ array, target, expected }) => {
 		expect.assertions(1)
 
 		expect(LinearSearchIndex(array, target)).toBe(expected)
+	})
+
+	it('Should return -1 if not found', () => {
+		expect.assertions(1)
+
+		expect(LinearSearchIndex([1, 2, 4, 5, 10, 45], 50)).toBe(-1)
 	})
 })
