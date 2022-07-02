@@ -1,4 +1,4 @@
-const findPosition = (numbers, findNumber) => {
+const BinarySearchIndex = (numbers, findNumber) => {
 	/* Binary search implementation */
 	/* Make sure that the number is sorted */
 	numbers.sort((a, b) => a - b)
@@ -25,11 +25,4 @@ const findPosition = (numbers, findNumber) => {
 	return -1
 }
 
-const main = () => {
-	const numbers = [4, 5, 2, 1, 10, 45]
-
-	// find number 10 position inside numbers array.
-	console.log(findPosition(numbers, 10))
-}
-
-main()
+module.exports = BinarySearchIndex
