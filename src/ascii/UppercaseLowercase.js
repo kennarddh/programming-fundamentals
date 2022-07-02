@@ -1,5 +1,6 @@
-const upperCase = str => {
+const UpperCase = str => {
 	let upperStr = ''
+
 	for (let i = 0; i < str.length; i++) {
 		if (str.charCodeAt(i) >= 97 && str.charCodeAt(i) <= 122) {
 			upperStr += String.fromCharCode(str.charCodeAt(i) - 32)
@@ -7,11 +8,13 @@ const upperCase = str => {
 			upperStr += str.charAt(i)
 		}
 	}
+
 	return upperStr
 }
 
-const lowerCase = str => {
+const LowerCase = str => {
 	let lowerStr = ''
+
 	for (let i = 0; i < str.length; i++) {
 		if (str.charCodeAt(i) >= 65 && str.charCodeAt(i) <= 90) {
 			lowerStr += String.fromCharCode(str.charCodeAt(i) + 32)
@@ -19,10 +22,11 @@ const lowerCase = str => {
 			lowerStr += str.charAt(i)
 		}
 	}
+
 	return lowerStr
 }
 
-const studentName = 'Kennardh'
-
-console.log(upperCase(studentName))
-console.log(lowerCase(studentName))
+module.exports = {
+	UpperCase,
+	LowerCase,
+}
