@@ -1,7 +1,6 @@
 {
 	"name": "programming-fundamentals",
 	"version": "1.0.0",
-	"main": "index.js",
 	"license": "MIT",
 	"scripts": {
 		"lint:check": "eslint src/**/*.js",

@@ -3,7 +3,7 @@ const readline = require('readline').createInterface({
 	output: process.stdout,
 })
 
-const getInput = question => {
+const GetInput = question => {
 	return new Promise(resolve => {
 		readline.question(question, answer => {
 			resolve(answer)
@@ -11,10 +11,4 @@ const getInput = question => {
 	})
 }
 
-const main = async () => {
-	const input = await getInput()
-
-	console.log(input)
-}
-
-main()
+module.exports = GetInput
