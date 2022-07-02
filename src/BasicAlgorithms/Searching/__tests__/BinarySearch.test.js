@@ -13,4 +13,10 @@ describe('Binary Search', () => {
 
 		expect(BinarySearchIndex(array, target)).toBe(expected)
 	})
+
+	it('Should return -1 if not found', () => {
+		expect.assertions(1)
+
+		expect(BinarySearchIndex([1, 2, 4, 5, 10, 45], 50)).toBe(-1)
+	})
 })
