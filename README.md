@@ -2,13 +2,13 @@
 
 ## Ascii
 
-## [Basic Algorithms](./src/basic-algorithms/theory/README.md)
+## [Basic Algorithms](./src/BasicAlgorithms/Theory/README.md)
 
-### [Searching](./src/basic-algorithms/searching/README.md)
+### [Searching](./src/BasicAlgorithms/Searching/README.md)
 
 -   Binary Search
 -   Linear Search
 
-### [Sorting](./src/basic-algorithms/sorting/README.md)
+### [Sorting](./src/BasicAlgorithms/Sorting/README.md)
 
 -   Bubble Sort
