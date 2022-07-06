@@ -12,7 +12,7 @@ module.exports = {
 		'prettier/prettier': [
 			'warn',
 			{
-				endOfLine: 'lf',
+				endOfLine: 'auto',
 			},
 		],
 		'import/prefer-default-export': 'off',
