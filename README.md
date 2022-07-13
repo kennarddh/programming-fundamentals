@@ -12,3 +12,5 @@
 ### [Sorting](./src/BasicAlgorithms/Sorting/README.md)
 
 -   Bubble Sort
+-   Insertion Sort
+-   Selection Sort
