@@ -79,7 +79,11 @@ class LinkedList {
 			currentNode = currentNode.next
 		}
 
+		const { value } = currentNode.next
+
 		currentNode.next = currentNode.next.next
+
+		return value
 	}
 }
 
