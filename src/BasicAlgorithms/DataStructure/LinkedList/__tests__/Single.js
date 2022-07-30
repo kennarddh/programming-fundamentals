@@ -59,7 +59,7 @@ describe('Single linked list', () => {
 	})
 
 	it('Should pop', () => {
-		expect.assertions(5)
+		expect.assertions(6)
 
 		linkedList.push('foo')
 		linkedList.push('bar')
@@ -71,12 +71,13 @@ describe('Single linked list', () => {
 		expect(log.mock.calls[1][0]).toBe('bar')
 		expect(log.mock.calls[2][0]).toBe('foobar')
 
-		linkedList.pop()
+		const result = linkedList.pop()
 
 		linkedList.print()
 
 		expect(log.mock.calls[3][0]).toBe('foo')
 		expect(log.mock.calls[4][0]).toBe('bar')
+		expect(result).toBe('foobar')
 	})
 
 	it('Should remove index', () => {
