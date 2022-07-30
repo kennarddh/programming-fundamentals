@@ -79,18 +79,4 @@ class LinkedList {
 	}
 }
 
-const linkedList = new LinkedList()
-
-linkedList.push('a')
-linkedList.push('b')
-linkedList.push('c')
-
-linkedList.print()
-
-console.log('-------------------')
-
-// linkedList.remove('b')
-// linkedList.pop()
-linkedList.removeIndex(1)
-
-linkedList.print()
+module.exports = LinkedList
