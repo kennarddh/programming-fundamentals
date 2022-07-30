@@ -65,7 +65,11 @@ class LinkedList {
 			currentNode = currentNode.next
 		}
 
+		const { value } = currentNode.next
+
 		currentNode.next = null
+
+		return value
 	}
 
 	removeIndex(index) {
