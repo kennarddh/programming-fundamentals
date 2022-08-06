@@ -1,5 +1,3 @@
-const util = require('util')
-
 const SingleLinkedList = require('../Single')
 
 describe('Single linked list', () => {
@@ -25,19 +23,20 @@ describe('Single linked list', () => {
 	})
 
 	it('Should push', () => {
-		expect.assertions(1)
+		expect.assertions(4)
 
 		linkedList.push('foo')
 		linkedList.push('bar')
 		linkedList.push('foobar')
 
-		expect(util.inspect(linkedList.head, { breakLength: Infinity })).toBe(
-			"Node { value: 'foo', next: Node { value: 'bar', next: Node { value: 'foobar', next: null } } }"
-		)
+		expect(linkedList.head.value).toBe('foo')
+		expect(linkedList.head.next.value).toBe('bar')
+		expect(linkedList.head.next.next.value).toBe('foobar')
+		expect(linkedList.head.next.next.next).toBeNull()
 	})
 
 	it('Should remove', () => {
-		expect.assertions(1)
+		expect.assertions(3)
 
 		linkedList.push('foo')
 		linkedList.push('bar')
@@ -45,13 +44,13 @@ describe('Single linked list', () => {
 
 		linkedList.remove('bar')
 
-		expect(util.inspect(linkedList.head, { breakLength: Infinity })).toBe(
-			"Node { value: 'foo', next: Node { value: 'foobar', next: null } }"
-		)
+		expect(linkedList.head.value).toBe('foo')
+		expect(linkedList.head.next.value).toBe('foobar')
+		expect(linkedList.head.next.next).toBeNull()
 	})
 
 	it('Should pop', () => {
-		expect.assertions(2)
+		expect.assertions(4)
 
 		linkedList.push('foo')
 		linkedList.push('bar')
@@ -59,15 +58,15 @@ describe('Single linked list', () => {
 
 		const result = linkedList.pop()
 
-		expect(util.inspect(linkedList.head, { breakLength: Infinity })).toBe(
-			"Node { value: 'foo', next: Node { value: 'bar', next: null } }"
-		)
+		expect(linkedList.head.value).toBe('foo')
+		expect(linkedList.head.next.value).toBe('bar')
+		expect(linkedList.head.next.next).toBeNull()
 
 		expect(result).toBe('foobar')
 	})
 
 	it('Should remove index', () => {
-		expect.assertions(2)
+		expect.assertions(4)
 
 		linkedList.push('foo')
 		linkedList.push('bar')
@@ -75,9 +74,9 @@ describe('Single linked list', () => {
 
 		const result = linkedList.removeIndex(1)
 
-		expect(util.inspect(linkedList.head, { breakLength: Infinity })).toBe(
-			"Node { value: 'foo', next: Node { value: 'foobar', next: null } }"
-		)
+		expect(linkedList.head.value).toBe('foo')
+		expect(linkedList.head.next.value).toBe('foobar')
+		expect(linkedList.head.next.next).toBeNull()
 
 		expect(result).toBe('bar')
 	})
@@ -123,15 +122,15 @@ describe('Single linked list', () => {
 	})
 
 	it('Should not remove value if value not exist', () => {
-		expect.assertions(2)
+		expect.assertions(3)
 
 		linkedList.push('foo')
 
 		const result = linkedList.remove('bar')
 
-		expect(util.inspect(linkedList.head, { breakLength: Infinity })).toBe(
-			"Node { value: 'foo', next: null }"
-		)
+		expect(linkedList.head.value).toBe('foo')
+		expect(linkedList.head.next).toBeNull()
+
 		expect(result).toBeNull()
 	})
 
@@ -156,42 +155,43 @@ describe('Single linked list', () => {
 	})
 
 	it('Should not remove index if index not exist', () => {
-		expect.assertions(2)
+		expect.assertions(3)
 
 		linkedList.push('foo')
 
 		const result = linkedList.removeIndex(1)
 
-		expect(util.inspect(linkedList.head, { breakLength: Infinity })).toBe(
-			"Node { value: 'foo', next: null }"
-		)
+		expect(linkedList.head.value).toBe('foo')
+		expect(linkedList.head.next).toBeNull()
+
 		expect(result).toBeNull()
 	})
 
 	it('Should return index indexOf', () => {
-		expect.assertions(2)
+		expect.assertions(3)
 
 		linkedList.push('foo')
 
 		const result = linkedList.indexOf('foo')
 
-		expect(util.inspect(linkedList.head, { breakLength: Infinity })).toBe(
-			"Node { value: 'foo', next: null }"
-		)
+		expect(linkedList.head.value).toBe('foo')
+		expect(linkedList.head.next).toBeNull()
+
 		expect(result).toBe(0)
 	})
 
 	it('Should return index indexOf if value is not first', () => {
-		expect.assertions(2)
+		expect.assertions(4)
 
 		linkedList.push('foo')
 		linkedList.push('bar')
 
 		const result = linkedList.indexOf('bar')
 
-		expect(util.inspect(linkedList.head, { breakLength: Infinity })).toBe(
-			"Node { value: 'foo', next: Node { value: 'bar', next: null } }"
-		)
+		expect(linkedList.head.value).toBe('foo')
+		expect(linkedList.head.next.value).toBe('bar')
+		expect(linkedList.head.next.next).toBeNull()
+
 		expect(result).toBe(1)
 	})
 
