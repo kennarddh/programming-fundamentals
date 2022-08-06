@@ -26,7 +26,7 @@ describe('Single linked list', () => {
 
 	describe('Push', () => {
 		it('Should push', () => {
-			expect.assertions(4)
+			expect.assertions(5)
 
 			linkedList.push('foo')
 			linkedList.push('bar')
@@ -36,12 +36,14 @@ describe('Single linked list', () => {
 			expect(linkedList.head.next.value).toBe('bar')
 			expect(linkedList.head.next.next.value).toBe('foobar')
 			expect(linkedList.head.next.next.next).toBeNull()
+
+			expect(linkedList.size).toBe(3)
 		})
 	})
 
 	describe('Remove', () => {
 		it('Should remove', () => {
-			expect.assertions(4)
+			expect.assertions(5)
 
 			linkedList.push('foo')
 			linkedList.push('bar')
@@ -53,31 +55,39 @@ describe('Single linked list', () => {
 			expect(linkedList.head.next.value).toBe('foobar')
 			expect(linkedList.head.next.next).toBeNull()
 
+			expect(linkedList.size).toBe(2)
+
 			expect(result).toBe('bar')
 		})
 
 		it('Should not remove value if linked list is empty', () => {
-			expect.assertions(2)
+			expect.assertions(3)
 
 			const result = linkedList.remove('foo')
 
 			expect(linkedList.head).toBeNull()
+
+			expect(linkedList.size).toBe(0)
+
 			expect(result).toBeNull()
 		})
 
 		it('Should set head to null if linked list has 1 node and remove value', () => {
-			expect.assertions(2)
+			expect.assertions(3)
 
 			linkedList.push('foo')
 
 			const result = linkedList.remove('foo')
 
 			expect(linkedList.head).toBeNull()
+
+			expect(linkedList.size).toBe(0)
+
 			expect(result).toBe('foo')
 		})
 
 		it('Should not remove value if value not exist', () => {
-			expect.assertions(3)
+			expect.assertions(4)
 
 			linkedList.push('foo')
 
@@ -86,13 +96,15 @@ describe('Single linked list', () => {
 			expect(linkedList.head.value).toBe('foo')
 			expect(linkedList.head.next).toBeNull()
 
+			expect(linkedList.size).toBe(1)
+
 			expect(result).toBeNull()
 		})
 	})
 
 	describe('Pop', () => {
 		it('Should pop', () => {
-			expect.assertions(4)
+			expect.assertions(5)
 
 			linkedList.push('foo')
 			linkedList.push('bar')
@@ -104,33 +116,41 @@ describe('Single linked list', () => {
 			expect(linkedList.head.next.value).toBe('bar')
 			expect(linkedList.head.next.next).toBeNull()
 
+			expect(linkedList.size).toBe(2)
+
 			expect(result).toBe('foobar')
 		})
 
 		it('Should not pop if linked list is empty', () => {
-			expect.assertions(2)
+			expect.assertions(3)
 
 			const result = linkedList.pop()
 
 			expect(linkedList.head).toBeNull()
+
+			expect(linkedList.size).toBe(0)
+
 			expect(result).toBeNull()
 		})
 
 		it('Should set head to null if linked list has 1 node and pop', () => {
-			expect.assertions(2)
+			expect.assertions(3)
 
 			linkedList.push('foo')
 
 			const result = linkedList.pop()
 
 			expect(linkedList.head).toBeNull()
+
+			expect(linkedList.size).toBe(0)
+
 			expect(result).toBe('foo')
 		})
 	})
 
 	describe('Remove index', () => {
 		it('Should remove index', () => {
-			expect.assertions(4)
+			expect.assertions(5)
 
 			linkedList.push('foo')
 			linkedList.push('bar')
@@ -142,31 +162,39 @@ describe('Single linked list', () => {
 			expect(linkedList.head.next.value).toBe('foobar')
 			expect(linkedList.head.next.next).toBeNull()
 
+			expect(linkedList.size).toBe(2)
+
 			expect(result).toBe('bar')
 		})
 
 		it('Should not remove index if linked list is empty', () => {
-			expect.assertions(2)
+			expect.assertions(3)
 
 			const result = linkedList.removeIndex(0)
 
 			expect(linkedList.head).toBeNull()
+
+			expect(linkedList.size).toBe(0)
+
 			expect(result).toBeNull()
 		})
 
 		it('Should set head to null if linked list has 1 node and remove index', () => {
-			expect.assertions(2)
+			expect.assertions(3)
 
 			linkedList.push('foo')
 
 			const result = linkedList.removeIndex(0)
 
 			expect(linkedList.head).toBeNull()
+
+			expect(linkedList.size).toBe(0)
+
 			expect(result).toBe('foo')
 		})
 
 		it('Should not remove index if index not exist', () => {
-			expect.assertions(3)
+			expect.assertions(4)
 
 			linkedList.push('foo')
 
@@ -174,6 +202,8 @@ describe('Single linked list', () => {
 
 			expect(linkedList.head.value).toBe('foo')
 			expect(linkedList.head.next).toBeNull()
+
+			expect(linkedList.size).toBe(1)
 
 			expect(result).toBeNull()
 		})
