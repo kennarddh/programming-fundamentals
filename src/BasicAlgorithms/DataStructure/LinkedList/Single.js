@@ -85,6 +85,22 @@ class LinkedList {
 
 		return value
 	}
+
+	indexOf(value) {
+		let currentNode = this.head
+
+		let count = 0
+
+		while (currentNode) {
+			if (currentNode.value === value) return count
+
+			currentNode = currentNode.next
+
+			count += 1
+		}
+
+		return -1
+	}
 }
 
 module.exports = LinkedList
