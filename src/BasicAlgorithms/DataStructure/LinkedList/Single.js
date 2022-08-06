@@ -68,6 +68,8 @@ class LinkedList {
 			currentNode = currentNode?.next ?? null
 		}
 
+		const returnValue = currentNode.next?.value ?? null
+
 		if (!currentNode?.next) {
 			currentNode.next = null
 		} else {
@@ -75,6 +77,8 @@ class LinkedList {
 		}
 
 		this.size -= 1
+
+		return returnValue
 	}
 
 	pop() {
