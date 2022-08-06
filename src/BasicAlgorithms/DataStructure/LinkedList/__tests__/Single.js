@@ -212,7 +212,7 @@ describe('Single linked list', () => {
 			const result = linkedList.indexOf('foo')
 
 			expect(linkedList.head).toBeNull()
-			expect(result).toBe(1)
+			expect(result).toBe(-1)
 		})
 	})
 })
