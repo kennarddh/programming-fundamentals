@@ -25,6 +25,8 @@ describe('Single linked list', () => {
 		expect(log.mock.calls[0][0]).toBe('foo')
 	})
 
+	// Replace print with util.inspect
+
 	it('Should push', () => {
 		expect.assertions(3)
 
