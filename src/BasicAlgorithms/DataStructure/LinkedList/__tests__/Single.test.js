@@ -41,17 +41,19 @@ describe('Single linked list', () => {
 
 	describe('Remove', () => {
 		it('Should remove', () => {
-			expect.assertions(3)
+			expect.assertions(4)
 
 			linkedList.push('foo')
 			linkedList.push('bar')
 			linkedList.push('foobar')
 
-			linkedList.remove('bar')
+			const result = linkedList.remove('bar')
 
 			expect(linkedList.head.value).toBe('foo')
 			expect(linkedList.head.next.value).toBe('foobar')
 			expect(linkedList.head.next.next).toBeNull()
+
+			expect(result).toBe('bar')
 		})
 
 		it('Should not remove value if linked list is empty', () => {
