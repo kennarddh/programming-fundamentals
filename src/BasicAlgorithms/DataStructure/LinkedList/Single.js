@@ -78,15 +78,29 @@ class LinkedList {
 	}
 
 	pop() {
-		let currentNode = this.head
+		if (this.size === 0) return null
 
-		while (currentNode.next.next) {
-			currentNode = currentNode.next
+		if (this.size === 1) {
+			const { value } = this.head
+
+			this.head = null
+
+			this.size -= 1
+
+			return value
 		}
 
-		const { value } = currentNode.next
+		let currentNode = this.head
+
+		for (let i = 0; i < this.size - 2; i++) {
+			currentNode = currentNode?.next ?? null
+		}
+
+		const value = currentNode.next?.value ?? null
 
 		currentNode.next = null
+
+		this.size -= 1
 
 		return value
 	}
