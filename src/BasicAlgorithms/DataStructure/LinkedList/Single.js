@@ -106,15 +106,33 @@ class LinkedList {
 	}
 
 	removeIndex(index) {
-		let currentNode = this.head
+		if (index >= this.size) return null
 
-		for (let i = 1; i < index; i++) {
-			currentNode = currentNode.next
+		if (this.size === 1) {
+			const { value: returnValue } = this.head
+
+			this.head = null
+
+			this.size -= 1
+
+			return returnValue
 		}
 
-		const { value } = currentNode.next
+		let currentNode = this.head
 
-		currentNode.next = currentNode.next.next
+		for (let i = 0; i < index - 1; i++) {
+			currentNode = currentNode?.next ?? null
+		}
+
+		const value = currentNode.next?.value ?? null
+
+		if (!currentNode?.next) {
+			currentNode.next = null
+		} else {
+			currentNode.next = currentNode.next?.next ?? null
+		}
+
+		this.size -= 1
 
 		return value
 	}
