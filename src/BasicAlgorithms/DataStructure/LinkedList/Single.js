@@ -10,10 +10,13 @@ class Node {
 class LinkedList {
 	constructor() {
 		this.head = null
+		this.size = 0
 	}
 
 	push(value) {
 		const node = new Node(value)
+
+		this.size += 1
 
 		if (!this.head) {
 			this.head = node
@@ -43,19 +46,35 @@ class LinkedList {
 	}
 
 	remove(value) {
-		if (!this.head) return
+		if (!this.head) return null
+
+		const index = this.indexOf(value)
+
+		if (index === -1) return null
+
+		if (this.size === 1) {
+			const { value: returnValue } = this.head
+
+			this.head = null
+
+			this.size -= 1
+
+			return returnValue
+		}
 
 		let currentNode = this.head
 
-		while (currentNode) {
-			if (currentNode.next.value === value) {
-				currentNode.next = currentNode.next.next
-
-				break
-			}
-
-			currentNode = currentNode.next
+		for (let i = 0; i < index - 1; i++) {
+			currentNode = currentNode?.next ?? null
 		}
+
+		if (!currentNode?.next) {
+			currentNode.next = null
+		} else {
+			currentNode.next = currentNode.next?.next ?? null
+		}
+
+		this.size -= 1
 	}
 
 	pop() {
