@@ -43,6 +43,8 @@ class LinkedList {
 
 			currentNode = currentNode.next
 		}
+
+		return null
 	}
 
 	remove(value) {
