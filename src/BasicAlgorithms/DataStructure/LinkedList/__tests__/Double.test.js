@@ -179,7 +179,7 @@ describe('Double linked list', () => {
 		})
 
 		it('Should set head to null if linked list has 1 node and pop', () => {
-			expect.assertions(3)
+			expect.assertions(4)
 
 			linkedList.push('foo')
 
