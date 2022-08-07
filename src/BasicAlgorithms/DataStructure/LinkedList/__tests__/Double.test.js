@@ -1,6 +1,6 @@
 const DoubleLinkedList = require('../Double')
 
-describe('Single linked list', () => {
+describe('Double linked list', () => {
 	let linkedList
 	const log = jest.spyOn(console, 'log').mockImplementation(() => {})
 
