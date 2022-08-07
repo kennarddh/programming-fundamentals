@@ -2,23 +2,22 @@ const DoubleLinkedList = require('../Double')
 
 describe('Single linked list', () => {
 	let linkedList
+	const log = jest.spyOn(console, 'log').mockImplementation(() => {})
 
 	beforeEach(() => {
 		linkedList = new DoubleLinkedList()
+
+		log.mockClear()
 	})
 
 	describe('Print', () => {
 		it('Should print', () => {
 			expect.assertions(3)
 
-			const log = jest.spyOn(console, 'log').mockImplementation(() => {})
-
-			const result = linkedList.print()
-
 			linkedList.push('foo')
 			linkedList.push('bar')
 
-			linkedList.print()
+			const result = linkedList.print()
 
 			expect(result).toBeNull()
 			expect(log.mock.calls[0][0]).toBe('foo')
@@ -28,16 +27,12 @@ describe('Single linked list', () => {
 
 	describe('Print reverse', () => {
 		it('Should print reverse', () => {
-			expect.assertions(2)
-
-			const log = jest.spyOn(console, 'log').mockImplementation(() => {})
-
-			const result = linkedList.print()
+			expect.assertions(3)
 
 			linkedList.push('foo')
 			linkedList.push('bar')
 
-			linkedList.print()
+			const result = linkedList.printReverse()
 
 			expect(result).toBeNull()
 			expect(log.mock.calls[0][0]).toBe('bar')
