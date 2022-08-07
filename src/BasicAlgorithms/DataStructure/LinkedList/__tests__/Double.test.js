@@ -211,7 +211,7 @@ describe('Double linked list', () => {
 			expect(linkedList.head.previous).toBeNull()
 			expect(linkedList.tail.next).toBeNull()
 
-			expect(linkedList.tail.value).toBe('bar')
+			expect(linkedList.tail.value).toBe('foobar')
 			expect(linkedList.tail.previous.value).toBe('foo')
 			expect(linkedList.tail.previous.previous).toBeNull()
 
