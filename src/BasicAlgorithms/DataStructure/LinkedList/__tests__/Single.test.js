@@ -60,6 +60,30 @@ describe('Single linked list', () => {
 			expect(result).toBe('bar')
 		})
 
+		it('Should remove more value', () => {
+			expect.assertions(8)
+
+			linkedList.push('foo')
+			linkedList.push('bar')
+			linkedList.push('foobar')
+			linkedList.push('fizz')
+			linkedList.push('buzz')
+			linkedList.push('fizzbuzz')
+
+			const result = linkedList.remove('fizz')
+
+			expect(linkedList.head.value).toBe('foo')
+			expect(linkedList.head.next.value).toBe('bar')
+			expect(linkedList.head.next.next.value).toBe('foobar')
+			expect(linkedList.head.next.next.next.value).toBe('buzz')
+			expect(linkedList.head.next.next.next.next.value).toBe('fizzbuzz')
+			expect(linkedList.head.next.next.next.next.next).toBeNull()
+
+			expect(linkedList.size).toBe(5)
+
+			expect(result).toBe('bar')
+		})
+
 		it('Should not remove value if linked list is empty', () => {
 			expect.assertions(3)
 
