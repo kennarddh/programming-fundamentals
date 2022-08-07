@@ -313,14 +313,13 @@ describe('Double linked list', () => {
 		})
 
 		it('Should return -1 indexOf if linked list empty', () => {
-			expect.assertions(2)
+			expect.assertions(3)
 
 			const result = linkedList.indexOf('foo')
 
 			expect(linkedList.head).toBeNull()
 
-			expect(linkedList.head.previous).toBeNull()
-			expect(linkedList.tail.next).toBeNull()
+			expect(linkedList.tail).toBeNull()
 
 			expect(result).toBe(-1)
 		})
