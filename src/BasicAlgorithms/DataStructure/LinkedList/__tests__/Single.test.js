@@ -3,21 +3,21 @@ const SingleLinkedList = require('../Single')
 describe('Single linked list', () => {
 	let linkedList
 
+	const log = jest.spyOn(console, 'log').mockImplementation(() => {})
+
 	beforeEach(() => {
 		linkedList = new SingleLinkedList()
+
+		log.mockClear()
 	})
 
 	describe('Print', () => {
 		it('Should print', () => {
 			expect.assertions(2)
 
-			const log = jest.spyOn(console, 'log').mockImplementation(() => {})
-
-			const result = linkedList.print()
-
 			linkedList.push('foo')
 
-			linkedList.print()
+			const result = linkedList.print()
 
 			expect(result).toBeNull()
 			expect(log.mock.calls[0][0]).toBe('foo')
