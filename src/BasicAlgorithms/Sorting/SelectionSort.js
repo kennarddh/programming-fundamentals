@@ -13,8 +13,6 @@ const SelectionSort = (arrays, comparator) => {
 		;[newArrays[key], newArrays[i]] = [newArrays[i], newArrays[key]]
 	}
 
-	console.log(newArrays)
-
 	return newArrays
 }
 
