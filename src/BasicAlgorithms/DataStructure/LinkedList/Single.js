@@ -158,6 +158,16 @@ class LinkedList {
 
 		return -1
 	}
+
+	getNodeByIndex(index) {
+		let node = this.head
+
+		for (let i = 0; i < index; i++) {
+			node = node.next
+		}
+
+		return node
+	}
 }
 
 module.exports = LinkedList
