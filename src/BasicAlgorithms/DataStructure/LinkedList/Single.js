@@ -152,6 +152,9 @@ class LinkedList {
 	}
 
 	getNodeByIndex(index) {
+		if (index > this.size) return null
+		if (index < 0) return null
+
 		let node = this.head
 
 		for (let i = 0; i < index; i++) {
