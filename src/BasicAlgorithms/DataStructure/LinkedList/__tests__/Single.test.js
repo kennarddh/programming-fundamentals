@@ -133,6 +133,24 @@ describe('Single linked list', () => {
 
 			expect(result).toBeNull()
 		})
+
+		it('Should set next to null', () => {
+			expect.assertions(5)
+
+			linkedList.push('foo')
+			linkedList.push('foobar')
+			linkedList.push('bar')
+
+			const result = linkedList.remove('bar')
+
+			expect(linkedList.head.value).toBe('foo')
+			expect(linkedList.head.next.value).toBe('foobar')
+			expect(linkedList.head.next.next).toBeNull()
+
+			expect(linkedList.size).toBe(2)
+
+			expect(result).toBe('bar')
+		})
 	})
 
 	describe('Pop', () => {
