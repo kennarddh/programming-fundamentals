@@ -69,6 +69,22 @@ describe('Single linked list', () => {
 			expect(result).toBe('bar')
 		})
 
+		it('Should remove with 2 value', () => {
+			expect.assertions(4)
+
+			linkedList.push('foo')
+			linkedList.push('bar')
+
+			const result = linkedList.remove('foo')
+
+			expect(linkedList.head.value).toBe('bar')
+			expect(linkedList.head.next).toBeNull()
+
+			expect(linkedList.size).toBe(1)
+
+			expect(result).toBe('foo')
+		})
+
 		it('Should remove more value', () => {
 			expect.assertions(8)
 
