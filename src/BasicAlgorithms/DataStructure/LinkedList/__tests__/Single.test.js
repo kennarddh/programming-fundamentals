@@ -271,4 +271,45 @@ describe('Single linked list', () => {
 			expect(result).toBe(-1)
 		})
 	})
+
+	describe('Get node by index', () => {
+		it('Should get node', () => {
+			expect.assertions(3)
+
+			linkedList.push('foo')
+			linkedList.push('bar')
+
+			const result = linkedList.getNodeByIndex(0)
+
+			expect(result.value).toBe('foo')
+			expect(result.next.value).toBe('bar')
+			expect(result.next.next).toBeNull()
+		})
+
+		it('Should get node next node null', () => {
+			expect.assertions(2)
+
+			linkedList.push('foo')
+			linkedList.push('bar')
+
+			const result = linkedList.getNodeByIndex(1)
+
+			expect(result.value).toBe('bar')
+			expect(result.next).toBeNull()
+		})
+
+		it.each([{ value: -2 }, { value: -1 }, { value: 3 }, { value: 4 }])(
+			'Should return null if index is invalid, index: $value',
+			({ value }) => {
+				expect.assertions(1)
+
+				linkedList.push('foo')
+				linkedList.push('bar')
+
+				const result = linkedList.getNodeByIndex(value)
+
+				expect(result).toBeNull()
+			}
+		)
+	})
 })
