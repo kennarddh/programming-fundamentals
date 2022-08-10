@@ -88,15 +88,11 @@ class LinkedList {
 			return value
 		}
 
-		let currentNode = this.head
+		const node = this.getNodeByIndex(this.size - 2)
 
-		for (let i = 0; i < this.size - 2; i++) {
-			currentNode = currentNode?.next ?? null
-		}
+		const { value } = node.next
 
-		const value = currentNode.next?.value ?? null
-
-		currentNode.next = null
+		node.next = null
 
 		this.size -= 1
 
