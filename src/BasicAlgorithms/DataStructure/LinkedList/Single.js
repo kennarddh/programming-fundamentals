@@ -120,13 +120,21 @@ class LinkedList {
 			return returnValue
 		}
 
+		this.size -= 1
+
+		if (index === 0) {
+			const { value: returnValue } = this.head
+
+			this.head = this.head.next
+
+			return returnValue
+		}
+
 		const prevNode = this.getNodeByIndex(index - 1)
 
 		const returnValue = prevNode.next.value
 
 		prevNode.next = prevNode.next?.next ?? null
-
-		this.size -= 1
 
 		return returnValue
 	}

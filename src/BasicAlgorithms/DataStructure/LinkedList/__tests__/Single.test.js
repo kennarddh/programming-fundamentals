@@ -258,6 +258,22 @@ describe('Single linked list', () => {
 			expect(result).toBe('bar')
 		})
 
+		it('Should remove first node', () => {
+			expect.assertions(4)
+
+			linkedList.push('foo')
+			linkedList.push('bar')
+
+			const result = linkedList.removeIndex(0)
+
+			expect(linkedList.head.value).toBe('bar')
+			expect(linkedList.head.next).toBeNull()
+
+			expect(linkedList.size).toBe(1)
+
+			expect(result).toBe('foo')
+		})
+
 		it('Should remove index more value', () => {
 			expect.assertions(8)
 
