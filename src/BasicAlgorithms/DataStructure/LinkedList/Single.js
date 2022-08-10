@@ -112,23 +112,15 @@ class LinkedList {
 			return returnValue
 		}
 
-		let currentNode = this.head
+		const prevNode = this.getNodeByIndex(index - 1)
 
-		for (let i = 0; i < index - 1; i++) {
-			currentNode = currentNode?.next ?? null
-		}
+		const returnValue = prevNode.next.value
 
-		const value = currentNode.next?.value ?? null
-
-		if (!currentNode?.next) {
-			currentNode.next = null
-		} else {
-			currentNode.next = currentNode.next?.next ?? null
-		}
+		prevNode.next = prevNode.next?.next ?? null
 
 		this.size -= 1
 
-		return value
+		return returnValue
 	}
 
 	indexOf(value) {
