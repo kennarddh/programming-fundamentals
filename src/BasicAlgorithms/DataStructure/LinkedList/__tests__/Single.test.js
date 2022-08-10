@@ -22,6 +22,15 @@ describe('Single linked list', () => {
 			expect(result).toBeNull()
 			expect(log.mock.calls[0][0]).toBe('foo')
 		})
+
+		it('Should return null if list is empty', () => {
+			expect.assertions(2)
+
+			const result = linkedList.print()
+
+			expect(result).toBeNull()
+			expect(log.mock.calls).toEqual([])
+		})
 	})
 
 	describe('Push', () => {
