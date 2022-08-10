@@ -81,7 +81,7 @@ describe('Single linked list', () => {
 
 			expect(linkedList.size).toBe(5)
 
-			expect(result).toBe('bar')
+			expect(result).toBe('fizz')
 		})
 
 		it('Should not remove value if linked list is empty', () => {
