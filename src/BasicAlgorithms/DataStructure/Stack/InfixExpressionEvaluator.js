@@ -31,7 +31,13 @@ class InvalidRootNumber extends Error {
 
 const Precedence = operator => operatorsObj[operator]
 
-const ParseNumber = str => parseFloat(str.trim(), 10)
+const ParseNumber = str => {
+	if (str.trim().startsWith('minus>')) {
+		return parseFloat(str.trim().slice(6), 10) * -1
+	}
+
+	return parseFloat(str.trim(), 10)
+}
 
 const Calculate = (num1, num2, operator) => {
 	switch (operator) {
@@ -70,21 +76,36 @@ const Process = (operatorStack, operandStack) => {
 }
 
 const Factorial = num => {
-	if (num < 0) return -1
 	if (num === 0) return 1
 
 	let result = 1
+	let number = num
 
-	for (let i = 1; i <= num; i += 1) {
-		result *= i
+	if (number < 0) {
+		while (number !== 0) {
+			result *= number
+
+			number += 1
+		}
+	} else {
+		while (number !== 0) {
+			result *= number
+
+			number -= 1
+		}
 	}
 
 	return result
 }
 
-const Evaluate = expression => {
+const Evaluate = rawExpression => {
 	const operandStack = new Stack()
 	const operatorStack = new Stack()
+
+	const expression = rawExpression.replace(
+		/-\d+/g,
+		x => `minus>${x.slice(1)}`
+	)
 
 	expression.split(' ').forEach(char => {
 		if (!(char === '(' || char === ')')) {
@@ -133,6 +154,6 @@ const Evaluate = expression => {
 }
 
 // const result = Evaluate('2 * ( 5 * ( 3 + 6 ) ) / 15 - 2')
-const result = Evaluate('5!!')
+const result = Evaluate('-4 + -10 * 2 + 100')
 
 console.log(result)
