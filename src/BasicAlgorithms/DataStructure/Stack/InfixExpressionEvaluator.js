@@ -109,19 +109,14 @@ const Evaluate = rawExpression => {
 
 	expression.split(' ').forEach(char => {
 		if (!(char === '(' || char === ')')) {
-			if (!operators.includes(char)) {
-				if (char.endsWith('!')) {
-					let result = ParseNumber(char.replace('!', ''))
-					const factorialCount = char.replace(/[^!]/g, '').length
+			if (char === '!') {
+				const num = operandStack.pop()
 
-					for (let i = 0; i < factorialCount; i++) {
-						result = Factorial(result)
-					}
+				const result = Factorial(num)
 
-					operandStack.push(result)
-				} else {
-					operandStack.push(ParseNumber(char))
-				}
+				operandStack.push(result)
+			} else if (!operators.includes(char)) {
+				operandStack.push(ParseNumber(char))
 			} else if (operatorStack.size === 0) {
 				operatorStack.push(char)
 			} else if (Precedence(char) >= Precedence(operatorStack.peek())) {
@@ -154,6 +149,6 @@ const Evaluate = rawExpression => {
 }
 
 // const result = Evaluate('2 * ( 5 * ( 3 + 6 ) ) / 15 - 2')
-const result = Evaluate('-4 + -10 * 2 + 100')
+const result = Evaluate('3 !')
 
 console.log(result)
