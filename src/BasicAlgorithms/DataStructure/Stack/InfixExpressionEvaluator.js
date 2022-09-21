@@ -21,6 +21,14 @@ class DivisionByZero extends Error {
 	}
 }
 
+class FloatFactorial extends Error {
+	constructor() {
+		super('Cannot Factorialize with float')
+
+		this.name = 'FloatFactorial'
+	}
+}
+
 class InvalidRootNumber extends Error {
 	constructor() {
 		super('Cannot Root Number With Other than 2 and 3')
@@ -76,6 +84,7 @@ const Process = (operatorStack, operandStack) => {
 }
 
 const Factorial = num => {
+	if (num !== Math.round(num)) throw new FloatFactorial()
 	if (num === 0) return 1
 
 	let result = 1
@@ -102,12 +111,21 @@ const Evaluate = rawExpression => {
 	const operandStack = new Stack()
 	const operatorStack = new Stack()
 
-	const expression = rawExpression.replace(
-		/-\d+/g,
-		x => `minus>${x.slice(1)}`
-	)
+	const expression = rawExpression
+		.replace(/-\d+/g, x => `minus>${x.slice(1)}`)
+		.split(' ')
+		.reduce((acc, str) => {
+			if (str) {
+				return `${acc}${acc === '' ? '' : ' '}${str}`
+			}
+
+			return acc
+		}, '')
+
+	console.log(expression.split(' '))
 
 	expression.split(' ').forEach(char => {
+		console.log({ operatorStack, operandStack, char })
 		if (!(char === '(' || char === ')')) {
 			if (char === '!') {
 				const num = operandStack.pop()
@@ -149,6 +167,6 @@ const Evaluate = rawExpression => {
 }
 
 // const result = Evaluate('2 * ( 5 * ( 3 + 6 ) ) / 15 - 2')
-const result = Evaluate('3 !')
+const result = Evaluate('10 - 20 + 10')
 
 console.log(result)
