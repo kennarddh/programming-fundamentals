@@ -122,10 +122,7 @@ const Evaluate = rawExpression => {
 			return acc
 		}, '')
 
-	console.log(expression.split(' '))
-
 	expression.split(' ').forEach(char => {
-		console.log({ operatorStack, operandStack, char })
 		if (!(char === '(' || char === ')')) {
 			if (char === '!') {
 				const num = operandStack.pop()
@@ -137,10 +134,10 @@ const Evaluate = rawExpression => {
 				operandStack.push(ParseNumber(char))
 			} else if (operatorStack.size === 0) {
 				operatorStack.push(char)
-			} else if (Precedence(char) >= Precedence(operatorStack.peek())) {
+			} else if (Precedence(char) > Precedence(operatorStack.peek())) {
 				operatorStack.push(char)
 			} else {
-				while (Precedence(operatorStack.peek()) > Precedence(char)) {
+				while (Precedence(operatorStack.peek()) >= Precedence(char)) {
 					Process(operatorStack, operandStack)
 				}
 
@@ -167,6 +164,8 @@ const Evaluate = rawExpression => {
 }
 
 // const result = Evaluate('2 * ( 5 * ( 3 + 6 ) ) / 15 - 2')
-const result = Evaluate('10 - 20 + 10')
+// const result = Evaluate('10 - 20 + 10')
+// const result = Evaluate('10 - 20 + 10')
+const result = Evaluate('10 - 20 - -30')
 
 console.log(result)
