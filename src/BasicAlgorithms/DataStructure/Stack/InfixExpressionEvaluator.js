@@ -163,9 +163,4 @@ const Evaluate = rawExpression => {
 	return operandStack.pop()
 }
 
-// const result = Evaluate('2 * ( 5 * ( 3 + 6 ) ) / 15 - 2')
-// const result = Evaluate('10 - 20 + 10')
-// const result = Evaluate('10 - 20 + 10')
-const result = Evaluate('10 - 20 - -30')
-
-console.log(result)
+module.exports = Evaluate
