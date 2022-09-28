@@ -125,6 +125,26 @@ class BinaryTree {
 	}
 
 	// #endregion
+
+	search(target, node = null) {
+		if (!this.root) throw new NoTreeRoot()
+
+		if (!node) {
+			node = this.root
+		}
+
+		if (node.value === target) return node
+
+		if (this.rightComparator(target, node.value)) {
+			if (!node.right) return null
+
+			return this.search(target, node.right)
+		}
+
+		if (!node.left) return null
+
+		return this.search(target, node.left)
+	}
 }
 
 const tree = new BinaryTree((value, currentValue) => {
@@ -142,4 +162,4 @@ tree.insert(-2)
 
 log(tree.root)
 
-tree.postOrder()
+console.log(tree.search(-3))
