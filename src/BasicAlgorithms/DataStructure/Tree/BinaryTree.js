@@ -24,6 +24,7 @@ class Node {
 		this.value = value
 		this.right = null
 		this.left = null
+		this.parent = null
 	}
 }
 
@@ -50,7 +51,11 @@ class BinaryTree {
 
 		if (this.rightComparator(value, node.value)) {
 			if (!node.right) {
-				node.right = new Node(value)
+				const newNode = new Node(value)
+
+				newNode.parent = node
+
+				node.right = newNode
 
 				return
 			}
@@ -61,7 +66,11 @@ class BinaryTree {
 		}
 
 		if (!node.left) {
-			node.left = new Node(value)
+			const newNode = new Node(value)
+
+			newNode.parent = node
+
+			node.left = newNode
 
 			return
 		}
@@ -145,6 +154,77 @@ class BinaryTree {
 
 		return this.search(target, node.left)
 	}
+
+	oneLeftRestRight(root, node = null) {
+		if (!this.root) throw new NoTreeRoot()
+
+		if (!node) {
+			node = root
+		}
+
+		if (root === node) {
+			return this.oneLeftRestRight(root, node.left)
+		}
+
+		return this.oneLeftRestRight(root, node.right)
+	}
+
+	remove(target, node = null) {
+		if (!this.root) throw new NoTreeRoot()
+
+		if (!node) {
+			node = this.root
+		}
+
+		const targetNode = this.search(target)
+
+		if (!targetNode) return false
+
+		let replacement = null
+
+		if (targetNode.left && targetNode.right) {
+			replacement = this.oneLeftRestRight(targetNode)
+
+			const { parent } = replacement
+
+			if (!parent.right) {
+				parent.left = null
+			} else {
+				parent.right = null
+			}
+		} else if (targetNode.left || targetNode.right) {
+			replacement = targetNode.left ?? targetNode.right
+
+			const { parent } = replacement
+
+			if (!parent.right) {
+				parent.left = null
+			} else {
+				parent.right = null
+			}
+		}
+
+		if (replacement) {
+			replacement.parent = targetNode.parent
+			replacement.left = targetNode.left
+			replacement.right = targetNode.right
+
+			if (targetNode.parent.left === targetNode) {
+				targetNode.parent.left = replacement
+			} else {
+				targetNode.parent.right = replacement
+			}
+		} else {
+			// eslint-disable-next-line no-lonely-if
+			if (targetNode.parent.left === targetNode) {
+				targetNode.parent.left = replacement
+			} else {
+				targetNode.parent.right = replacement
+			}
+		}
+
+		return true
+	}
 }
 
 const tree = new BinaryTree((value, currentValue) => {
@@ -162,4 +242,7 @@ tree.insert(-2)
 
 log(tree.root)
 
-console.log(tree.search(-3))
+console.log(tree.remove(-1))
+log(tree.root)
+
+tree.inOrder()
