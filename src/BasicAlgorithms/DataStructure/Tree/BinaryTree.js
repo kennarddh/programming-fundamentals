@@ -13,7 +13,7 @@ class DuplicateTreeValue extends Error {
 
 class NoTreeRoot extends Error {
 	constructor() {
-		super('Tree have null root')
+		super('Tree cannot have null root')
 
 		this.name = 'NoTreeRoot'
 	}
