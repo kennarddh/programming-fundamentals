@@ -166,60 +166,57 @@ class BinaryTree {
 			return this.oneLeftRestRight(root, node.left)
 		}
 
+		if (!node.right) return node
+
 		return this.oneLeftRestRight(root, node.right)
 	}
 
-	remove(target, node = null) {
+	remove(targetValue) {
 		if (!this.root) throw new NoTreeRoot()
 
-		if (!node) {
-			node = this.root
-		}
-
-		const targetNode = this.search(target)
+		const targetNode = this.search(targetValue)
 
 		if (!targetNode) return false
 
-		let replacement = null
+		let isLeft = null
+		let posititon = null
+		const isRoot = targetNode === this.root
 
-		if (targetNode.left && targetNode.right) {
-			replacement = this.oneLeftRestRight(targetNode)
-
-			const { parent } = replacement
-
-			if (!parent.right) {
-				parent.left = null
-			} else {
-				parent.right = null
-			}
-		} else if (targetNode.left || targetNode.right) {
-			replacement = targetNode.left ?? targetNode.right
-
-			const { parent } = replacement
-
-			if (!parent.right) {
-				parent.left = null
-			} else {
-				parent.right = null
-			}
+		if (targetNode !== this.root) {
+			isLeft = targetNode.parent.left === targetNode
+			posititon = isLeft ? 'left' : 'right'
 		}
 
-		if (replacement) {
-			replacement.parent = targetNode.parent
-			replacement.left = targetNode.left
-			replacement.right = targetNode.right
+		if (targetNode.left && targetNode.right) {
+			// 2 Child
+			const replacement = this.oneLeftRestRight(targetNode)
 
-			if (targetNode.parent.left === targetNode) {
-				targetNode.parent.left = replacement
+			const replacementIsLeft = replacement.parent.left === replacement
+			const replacementPosititon = replacementIsLeft ? 'left' : 'right'
+
+			replacement.parent[replacementPosititon] = null
+
+			targetNode.value = replacement.value
+			targetNode.left = replacement.left
+			replacement.left.parent = targetNode
+		} else if (targetNode.left || targetNode.right) {
+			// 1 Child
+			const replacement = targetNode.left || targetNode.right
+
+			if (isRoot) {
+				replacement.parent = null
+				this.root = replacement
 			} else {
-				targetNode.parent.right = replacement
+				replacement.parent = targetNode.parent
+				targetNode.parent[posititon] = replacement
 			}
 		} else {
+			// 0 Child
 			// eslint-disable-next-line no-lonely-if
-			if (targetNode.parent.left === targetNode) {
-				targetNode.parent.left = replacement
+			if (isRoot) {
+				this.root = null
 			} else {
-				targetNode.parent.right = replacement
+				targetNode.parent[posititon] = null
 			}
 		}
 
@@ -233,16 +230,19 @@ const tree = new BinaryTree((value, currentValue) => {
 	return false
 })
 
-tree.insert(1)
-tree.insert(2)
-tree.insert(3)
+tree.insert(10)
+tree.insert(15)
+tree.insert(13)
+tree.insert(16)
+tree.insert(20)
+tree.insert(18)
+tree.insert(14)
 tree.insert(-1)
-tree.insert(-3)
 tree.insert(-2)
 
 log(tree.root)
 
-console.log(tree.remove(-1))
+console.log(tree.remove(10))
 log(tree.root)
 
-tree.inOrder()
+// tree.inOrder()
