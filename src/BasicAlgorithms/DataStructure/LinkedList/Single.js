@@ -155,6 +155,10 @@ class LinkedList {
 		return -1
 	}
 
+	includes(value) {
+		return this.indexOf(value) > 0
+	}
+
 	getNodeByIndex(index) {
 		if (index > this.size) return null
 		if (index < 0) return null
