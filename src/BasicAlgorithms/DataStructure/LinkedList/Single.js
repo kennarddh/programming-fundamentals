@@ -156,7 +156,7 @@ class LinkedList {
 	}
 
 	includes(value) {
-		return this.indexOf(value) > 0
+		return this.indexOf(value) >= 0
 	}
 
 	getNodeByIndex(index) {
