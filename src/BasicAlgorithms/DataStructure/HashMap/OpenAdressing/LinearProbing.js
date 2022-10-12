@@ -108,7 +108,7 @@ class LinearProbing {
 
 	forEach(callback, context = null) {
 		for (const [key, value] of this.map) {
-			callback.call(context, value, key, context)
+			callback.call(context, value, key, this)
 		}
 	}
 
