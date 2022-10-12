@@ -120,61 +120,48 @@ class LinearProbing {
 	}
 
 	keys() {
-		return {
-			[Symbol.iterator]: () => {
-				let i = 0
-
-				return {
-					next: () => {
-						i += 1
-
-						if (i > this.size) return { done: true }
-
-						return { value: this.map[i - 1][0], done: false }
-					},
-				}
-			},
+		function* inner() {
+			for (const [key] of this.map) {
+				yield key
+			}
 		}
+
+		return inner.call(this)
 	}
 
 	values() {
-		return {
-			[Symbol.iterator]: () => {
-				let i = 0
-
-				return {
-					next: () => {
-						i += 1
-
-						if (i > this.size) return { done: true }
-
-						return { value: this.map[i - 1][1], done: false }
-					},
-				}
-			},
+		function* inner() {
+			for (const [_, value] of this.map) {
+				yield value
+			}
 		}
+
+		return inner.call(this)
 	}
 
 	entries() {
-		return {
-			[Symbol.iterator]: () => {
-				let i = 0
-
-				return {
-					next: () => {
-						i += 1
-
-						if (i > this.size) return { done: true }
-
-						return { value: this.map[i - 1], done: false }
-					},
-				}
-			},
+		function* inner() {
+			for (const keyValue of this.map) {
+				yield keyValue
+			}
 		}
+
+		return inner.call(this)
 	}
 	// #endregion
 	// #endregion
 }
+
+// const map = new LinearProbing(5)
+
+// map.set(1, 0)
+// map.set(2, 1)
+// map.set(6, 3)
+// map.set(11, 6)
+// map.set(12, 9)
+
+// console.log(map)
+// console.log([...map.entries()])
 
 module.exports = LinearProbing
 
