@@ -171,6 +171,16 @@ class LinkedList {
 
 		return node
 	}
+
+	forEach(callback) {
+		let currentNode = this.head
+
+		while (currentNode) {
+			callback(currentNode.value)
+
+			currentNode = currentNode.next
+		}
+	}
 }
 
 module.exports = LinkedList
