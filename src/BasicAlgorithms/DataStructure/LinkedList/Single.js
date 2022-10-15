@@ -181,6 +181,16 @@ class LinkedList {
 			currentNode = currentNode.next
 		}
 	}
+
+	*[Symbol.iterator]() {
+		let currentNode = this.head
+
+		while (currentNode) {
+			yield currentNode.value
+
+			currentNode = currentNode.next
+		}
+	}
 }
 
 module.exports = LinkedList
