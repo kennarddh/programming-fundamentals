@@ -187,14 +187,14 @@ class HashLinked {
 	// #endregion
 }
 
-const map = new HashLinked(5)
+// const map = new HashLinked(5)
 
-map.set(1, 0)
-map.set(2, 1)
-map.set(6, 3)
-map.set(11, 6)
-map.set(12, 9)
+// map.set(1, 0)
+// map.set(2, 1)
+// map.set(6, 3)
+// map.set(11, 6)
+// map.set(12, 9)
 
-console.log([...map.values()])
+// console.log([...map.values()])
 
 module.exports = HashLinked
