@@ -135,13 +135,7 @@ class HashLinked {
 	*[Symbol.iterator]() {
 		for (const partition of this.map) {
 			if (partition) {
-				const result = []
-
-				partition.forEach(keyValue => {
-					result.push(keyValue)
-				})
-
-				for (const item of result) {
+				for (const item of partition) {
 					yield item
 				}
 			}
@@ -152,14 +146,8 @@ class HashLinked {
 		function* inner() {
 			for (const partition of this.map) {
 				if (partition) {
-					const result = []
-
-					partition.forEach(([key]) => {
-						result.push(key)
-					})
-
-					for (const item of result) {
-						yield item
+					for (const [key] of partition) {
+						yield key
 					}
 				}
 			}
@@ -172,14 +160,8 @@ class HashLinked {
 		function* inner() {
 			for (const partition of this.map) {
 				if (partition) {
-					const result = []
-
-					partition.forEach(([_, value]) => {
-						result.push(value)
-					})
-
-					for (const item of result) {
-						yield item
+					for (const [value] of partition) {
+						yield value
 					}
 				}
 			}
@@ -192,13 +174,7 @@ class HashLinked {
 		function* inner() {
 			for (const partition of this.map) {
 				if (partition) {
-					const result = []
-
-					partition.forEach(keyValue => {
-						result.push(keyValue)
-					})
-
-					for (const item of result) {
+					for (const item of partition) {
 						yield item
 					}
 				}
@@ -211,16 +187,14 @@ class HashLinked {
 	// #endregion
 }
 
-// const map = new HashLinked(5)
+const map = new HashLinked(5)
 
-// map.set(1, 0)
-// map.set(2, 1)
-// map.set(6, 3)
-// map.set(11, 6)
-// map.set(12, 9)
+map.set(1, 0)
+map.set(2, 1)
+map.set(6, 3)
+map.set(11, 6)
+map.set(12, 9)
 
-// log(map)
-
-// console.log([...map.entries()])
+console.log([...map.values()])
 
 module.exports = HashLinked
